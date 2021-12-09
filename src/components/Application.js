@@ -45,9 +45,11 @@ const appointments = [
 
 function Application(props) {
 
-  const [day, setDay] = useState(["Monday"]);
-  const [days, setDays] = useState([]);
-  const [interviewer, setInterviewer] = useState(2);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
 
   const appArray = appointments.map(app => {
       return <Appointment key={app.id} {...app}/>
