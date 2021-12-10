@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
 
   if (!state.days || !state.appointments) return [];
 
@@ -20,3 +20,18 @@ export default function getAppointmentsForDay(state, day) {
 
   return appointmentsForDay;
 };
+
+export function getInterview(state, interview) {
+
+  if (!interview) return null;
+
+  let interviewData = {
+    student: interview.student, 
+    interviewer: {...state.interviewers[String(interview.interviewer)]}
+  };
+
+  return interviewData;
+
+};
+
+export default { getAppointmentsForDay, getInterview };
