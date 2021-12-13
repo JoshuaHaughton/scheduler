@@ -11,11 +11,11 @@ export default function useVisualMode(init) {
     } else {
       setHistory(prev => {
         prev.pop();
-        setMode(newM)
-        return [...prev, newM]
+        return [...prev, mode]
       })
-    }
-    
+      setMode(newM);
+  }
+
 
   }
 
@@ -23,7 +23,7 @@ export default function useVisualMode(init) {
     if (history.length > 1) {
     setMode(history[history.length-2]);
     setHistory(prev => {
-      (prev.pop())
+      prev.pop()
       return prev;
     })
   }

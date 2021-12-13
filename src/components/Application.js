@@ -3,11 +3,12 @@ import axios from "axios";
 import "./Application.scss";
 import DayList from "./DayList";
 import Appointment from 'components/Appointment';
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 
+const SHOW = "SHOW";
+const EMPTY = "EMPTY";
 
 function Application(props) {
-
   const [state, setState] = useState({
     day: "Monday",
     days: ["Monday"],
@@ -54,7 +55,6 @@ function Application(props) {
   });
 
   useEffect(() => {
-    //   axios.get('http://localhost:8001/api/days').then(response => /*setDays*/(response.data));
     Promise.all([
       axios.get('http://localhost:8001/api/days'),
       axios.get('http://localhost:8001/api/appointments'),
@@ -72,15 +72,51 @@ function Application(props) {
     }, []);
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const setDay = day => setState(prev => ({ ...prev, day }));
-  // const setDays = days => setState(prev => ({ ...prev, days }));
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    
+    setState({
+        ...state,
+        appointments: appointments,
+      });
+    console.log('axios time!');
+
+    return(axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+    .then(response => {
+      console.log("Status: ", response.status);
+      console.log("Data: ", response.data);
+    }).catch(error => {
+      console.error('Something went wrong!', error);
+    }));
+    
+  }
+  
   const appArray = dailyAppointments.map(app => {
     const interview = getInterview(state, app.interview);
 
-      return <Appointment {...app} key={app.id} interview={interview}/>
+      return <Appointment 
+      {...app} 
+      key={app.id} 
+      interview={interview}
+      interviewers={dailyInterviewers}
+      bookInterview={bookInterview}
+      state={state}
+      />
 });
+
 
 
   return (
