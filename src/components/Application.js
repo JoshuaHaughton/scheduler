@@ -88,20 +88,21 @@ function Application(props) {
       [id]: appointment
     };
     
-    setState({
-        ...state,
-        appointments: appointments
-      });
+    // setState({
+    //     ...state,
+    //     appointments: appointments
+    //   });
     console.log('axios time!', appointment, id);
 
     return(axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then(response => {
+      setState({
+        ...state,
+        appointments: appointments
+      });
       console.log("Status: ", response.status);
       console.log("Data: ", response.data);
-    }).catch(error => {
-      console.error('Something went wrong!', error);
-    }));
-    
+    }))
   }
 
   function cancelInterview(id) {
@@ -127,8 +128,6 @@ function Application(props) {
     });
     console.log("D-Status: ", response.status);
     console.log("D-Data: ", response.data);
-  }).catch(error => {
-    console.error('D-Something went wrong!', error);
   }));
 
     

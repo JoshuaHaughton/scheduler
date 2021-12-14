@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 const EMPTY = "EMPTY";
@@ -14,10 +15,13 @@ const CREATE = 'CREATE';
 const SAVING = 'SAVING';
 const DELETING = 'DELETING';
 const EDIT = 'EDIT';
+const ERROR_SAVE = 'ERROR_SAVE';
+const ERROR_DELETE = 'ERROR_DELETE';
 let message = '';
+let errMessage = '';
 
 export default function Appointment(props) {
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition, back, doubleBack } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
@@ -27,9 +31,16 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING)
-    props.bookInterview(props.id, interview)
+
+    transition(SAVING);
+
+    props
+    .bookInterview(props.id, interview)
     .then(() => transition(SHOW))
+    .catch((error) => {
+      errMessage = error.message
+      transition(ERROR_SAVE, true);
+    })
   }
   
   function edit() {
@@ -52,6 +63,11 @@ export default function Appointment(props) {
     transition(SAVING)
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
+    .catch((error) => {
+      errMessage = error.message
+      console.log(error.message);
+      transition(ERROR_DELETE, true);
+    })
   }
 
   if(mode === CREATE) console.log('CREATE: ', props.interview)
@@ -93,6 +109,20 @@ export default function Appointment(props) {
         interviewers={props.interviewers}
         onCancel={() => back()}
         onSave={save}
+      />
+    )}
+
+      {mode === ERROR_SAVE && (
+      <Error
+        onClose={() => back()}
+        message={errMessage}
+      />
+    )}
+
+      {mode === ERROR_DELETE && (
+      <Error
+        onClose={() => doubleBack()}
+        message={errMessage}
       />
     )}
 
