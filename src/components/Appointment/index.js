@@ -84,7 +84,7 @@ export default function Appointment(props) {
 
     {mode === SHOW && (
       <Show
-        key={props.key}
+        key={props.id}
         id={props.id}
         student={props.interview.student}
         interviewer={props.interview.interviewer}
