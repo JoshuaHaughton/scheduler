@@ -90,7 +90,7 @@ function Application(props) {
     
     setState({
         ...state,
-        appointments: appointments,
+        appointments: appointments
       });
     console.log('axios time!');
 
@@ -103,16 +103,48 @@ function Application(props) {
     }));
     
   }
+
+  function cancelInterview(id) {
+    console.log('Appointment id of : ', id);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+  
+  console.log('axios delete time!');
+
+  return(axios.delete(`http://localhost:8001/api/appointments/${id}`, appointment.interview)
+  .then(response => {
+    setState({
+      ...state,
+      appointments: appointments
+    });
+    console.log("D-Status: ", response.status);
+    console.log("D-Data: ", response.data);
+  }).catch(error => {
+    console.error('D-Something went wrong!', error);
+  }));
+
+    
+  }
   
   const appArray = dailyAppointments.map(app => {
     const interview = getInterview(state, app.interview);
 
       return <Appointment 
       {...app} 
-      key={app.id} 
+      key={app.id}
+      id={app.id}
       interview={interview}
       interviewers={dailyInterviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       state={state}
       />
 });
