@@ -9,12 +9,15 @@ export default function InterviewerList(props) {
   props.interviewers.map(interviewer => {
     interviewers.push(<InterviewerListItem 
       key={interviewer.id} 
+      id={interviewer.id} 
       name={interviewer.name} 
       avatar={interviewer.avatar}
       setInterviewer={() => props.onChange(interviewer.id)}
       selected={interviewer.id === props.value}
       />)
   })
+
+  console.log('less goooo', props.value);
 
   return (
     <section className="interviewers">

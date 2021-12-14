@@ -77,7 +77,7 @@ function Application(props) {
   const setDay = day => setState(prev => ({ ...prev, day }));
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    console.log('book interview time: ', id, interview);
 
     const appointment = {
       ...state.appointments[id],
@@ -92,7 +92,7 @@ function Application(props) {
         ...state,
         appointments: appointments
       });
-    console.log('axios time!');
+    console.log('axios time!', appointment, id);
 
     return(axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then(response => {

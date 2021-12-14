@@ -5,7 +5,7 @@ import Button from 'components/Button';
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState(props.interviewer || '');
 
   const oninput = (event) => {
     if (event.target.value === '') {
@@ -25,6 +25,7 @@ export default function Form(props) {
     props.onCancel();
   }
 
+  console.log('student, interviewer: ', student, interviewer); 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
