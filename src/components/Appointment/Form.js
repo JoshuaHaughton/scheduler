@@ -17,7 +17,7 @@ export default function Form(props) {
   };
 
   const reset = () => {
-    setInterviewer('');
+    setInterviewer(null);
     setStudent('');
   }
 
@@ -27,12 +27,13 @@ export default function Form(props) {
   }
 
   function validate() {
-    if (!props.name) {
+    if (!props.name && student === '') {
       setError("student name cannot be blank");
       return;
     }
     if (props.onSave) {
-      props.onSave(props.name, interviewer);
+      setError("");
+      props.onSave(student, interviewer);
     };
     
   }
@@ -47,8 +48,8 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder={props.name ? '' : "Enter Student Name"}
-            value={props.name || student /*props.name test*/}
+            placeholder={props.name && !props.onCancel ? '' : "Enter Student Name"}
+            value={student}
             onChange={oninput}
             data-testid="student-name-input"
           />
