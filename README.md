@@ -4,11 +4,21 @@ Interview Scheduler is a single-page React based app that allows users to manage
 
 The app will display errors to the user if any arise while making a request to the server.
 
-This app uses Cypress for E2E testing, Jest for integration testing, and Storybook for isolated component tests
+The scheduler uses Cypress for E2E testing, Jest for integration testing, and Storybook for isolated component tests.
 
 ## Images
 
+### Home
+!['Home Page of Project'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/Home.png?raw=true)
 
+### Form Creation
+!['Form creation section'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/Form.png?raw=true)
+
+### Appointment Created
+!['New appointment created'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/App-Created.png?raw=true)
+
+### Appointment Deletion COnfirmation
+!['Appointment will be deleted once confirmed'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/Delete.png?raw=true)
 
 ## Tech Stack
 - React
