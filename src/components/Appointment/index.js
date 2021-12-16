@@ -21,6 +21,7 @@ let message = '';
 let errMessage = '';
 
 export default function Appointment(props) {
+  
   const { mode, transition, back, doubleBack } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -44,13 +45,7 @@ export default function Appointment(props) {
   }
   
   function edit() {
-    // const interview = {
-    //   student: name,
-    //   interviewer
-    // };
     transition(EDIT)
-    // props.bookInterview(props.id, interview)
-    // .then(() => transition(SHOW))
   }
 
   function confirm() {
@@ -76,10 +71,11 @@ export default function Appointment(props) {
 <>
   <article className="appointment">
     <Header time={props.time}/>
+
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-
+    
     {mode === SAVING && <Status message={message}/>}
-
+    
     {mode === DELETING && <Confirm onCancel={() => transition(SHOW)} onConfirm={del} message={message}/>}
 
     {mode === SHOW && (
@@ -92,6 +88,7 @@ export default function Appointment(props) {
         onEdit={edit}
       />
     )}
+
     {mode === CREATE && (
       <Form
         student={props.name || ''}

@@ -3,7 +3,6 @@ import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
-import useVisualMode from 'hooks/useVisualMode'
 
 afterEach(cleanup);
 
@@ -30,31 +29,25 @@ describe("Form", () => {
   
 
   it("renders with initial student name", () => {
+    const { getByTestId } = render(
+      <Form interviewers={interviewers} student="Lydia Miller-Jones" />
+    );
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 
   it("validates that the student name is not blank", () => {
-    /* 1. Create the mock onSave function */
-   
-      // it("uses the mock implementation", () => {
-      //   const fn = jest.fn((a, b) => 42);
-      //   fn(1, 2);
-      //   expect(fn).toHaveReturnedWith(42);
-      //  });
+
 
       const onSave = jest.fn();
 
 
-    /* 2. Render the Form with interviewers and the onSave mock function passed as an onSave prop, the name prop should be blank or undefined */
     const { getByText } =render(
       <Form
-      // student={''}
       interviewers={interviewers}
       onSave={onSave}
       />
     )
-  
-    /* 3. Click the save button */
+
     fireEvent.click(getByText("Save"));
     
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
@@ -109,5 +102,5 @@ describe("Form", () => {
   
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
-  
+
 });

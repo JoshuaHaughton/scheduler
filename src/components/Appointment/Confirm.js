@@ -8,7 +8,11 @@ export default function Confirm(props) {
       <h1 className="text--semi-bold">Delete the appointment?</h1>
       <section className="appointment__actions">
         <Button danger onClick={props.onCancel}>Cancel</Button>
-        <Button danger onClick={props.onConfirm}>Confirm</Button>
+        <Button 
+        danger 
+        onClick={props.onConfirm} 
+        data-testid="confirm"
+        >Confirm</Button>
       </section>
     </main>
   );
