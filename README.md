@@ -17,7 +17,7 @@ The scheduler uses Cypress for E2E testing, Jest for integration testing, and St
 ### Appointment Created
 !['New appointment created'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/App-Created.png?raw=true)
 
-### Appointment Deletion COnfirmation
+### Appointment Deletion Confirmation
 !['Appointment will be deleted once confirmed'](https://github.com/JoshuaHaughton/scheduler/blob/master/docs/Delete.png?raw=true)
 
 ## Tech Stack
