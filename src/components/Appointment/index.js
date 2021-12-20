@@ -22,7 +22,7 @@ let errMessage = '';
 
 export default function Appointment(props) {
   
-  const { mode, transition, back, doubleBack } = useVisualMode(
+  const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
@@ -60,12 +60,9 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY))
     .catch((error) => {
       errMessage = error.message
-      console.log(error.message);
       transition(ERROR_DELETE, true);
     })
   }
-
-  if(mode === CREATE) console.log('CREATE: ', props.interview)
 
   return (
 <>
@@ -118,7 +115,7 @@ export default function Appointment(props) {
 
       {mode === ERROR_DELETE && (
       <Error
-        onClose={() => doubleBack()}
+        onClose={() => back()}
         message={errMessage}
       />
     )}

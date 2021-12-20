@@ -4,7 +4,7 @@ Interview Scheduler is a single-page React based app that allows users to manage
 
 The app will display errors to the user if any arise while making a request to the server.
 
-The scheduler uses Cypress for E2E testing, Jest for integration testing, and Storybook for isolated component tests.
+The scheduler uses Jest for integration testing, and Storybook for isolated component tests.
 
 ## Images
 
@@ -25,7 +25,6 @@ The scheduler uses Cypress for E2E testing, Jest for integration testing, and St
 - Express
 - Axios
 - SASS
-- Cypress
 - Jest
 - StoryBook
 
@@ -50,10 +49,4 @@ npm test
 
 ```sh
 npm run storybook
-```
-
-## Running Cypress E2E Testing
-
-```sh
-npm run cypress
 ```

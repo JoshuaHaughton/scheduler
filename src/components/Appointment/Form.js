@@ -27,7 +27,7 @@ export default function Form(props) {
   }
 
   function validate() {
-    if (!props.name && (student === '' || interviewer === '')) {
+    if (!props.name && (student === '' || interviewer === null)) {
       setError("student name cannot be blank");
       return;
     }
@@ -39,7 +39,6 @@ export default function Form(props) {
   }
   
 
-  console.log('student, interviewer: ', student, interviewer); 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

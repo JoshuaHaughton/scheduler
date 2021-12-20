@@ -14,9 +14,6 @@ export default function useApplicationData() {
       axios.get('http://localhost:8001/api/appointments'),
       axios.get('http://localhost:8001/api/interviewers')
     ]).then((all) => {
-      console.log(all[0]);
-      console.log(all[1]);
-      console.log(all[2]); 
     
       const [first, second, third] = all;
 
@@ -45,7 +42,6 @@ export default function useApplicationData() {
       }
     }
 
-    //sanity check
     if (!newState.days[dayId - 1]) return;
 
 
@@ -66,7 +62,6 @@ export default function useApplicationData() {
   let newDays = null;
 
   function bookInterview(id, interview) {
-    console.log('book interview time: ', id, interview);
 
     const appointment = {
       ...state.appointments[id],
@@ -122,8 +117,6 @@ export default function useApplicationData() {
           appointments: appointments,
           days: newDay
         });
-      console.log("D-Status: ", response.status);
-      console.log("D-Data: ", response.data);
     }));
   }
 

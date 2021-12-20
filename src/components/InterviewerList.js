@@ -17,7 +17,6 @@ function InterviewerList(props) {
       />)
   })
 
-  console.log('less goooo', props.value);
 
   return (
     <section className="interviewers">
