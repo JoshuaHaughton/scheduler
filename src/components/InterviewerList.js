@@ -15,6 +15,7 @@ function InterviewerList(props) {
       setInterviewer={() => props.onChange(interviewer.id)}
       selected={interviewer.id === props.value}
       />)
+      return interviewers;
   })
 
 
