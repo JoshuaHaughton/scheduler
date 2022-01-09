@@ -54,7 +54,7 @@ npm run storybook
 ## Install API
 
 ```sh
-(You will need to run this in a different terminal than scheduler)
+(You will need to run this on a different terminal than scheduler)
 
 git clone git@github.com:lighthouse-labs/scheduler-api.git
 cd scheduler-api
