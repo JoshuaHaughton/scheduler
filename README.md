@@ -50,3 +50,14 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Install API
+
+```sh
+(In the same root directory as scheduler)
+git clone git@github.com:lighthouse-labs/scheduler-api.git
+cd scheduler-api
+npm start
+
+You will need to run this in a different terminal than scheduler
+```
