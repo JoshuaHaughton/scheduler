@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
+import { suppressErrorOutput } from '@testing-library/react-hooks';
 
 
 export default function Form(props) {
@@ -31,6 +32,14 @@ export default function Form(props) {
       setError("student name cannot be blank");
       return;
     }
+
+    if (!props.name && interviewer === null) {
+      setError("Interviewer must be selected");
+      return;
+
+    }
+
+    
     if (props.onSave) {
       setError("");
       props.onSave(student, interviewer);
