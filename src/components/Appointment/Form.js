@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
-import { suppressErrorOutput } from '@testing-library/react-hooks';
 
 
 export default function Form(props) {
@@ -9,6 +8,7 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  //Sets student state to whatever is inputted
   const oninput = (event) => {
     if (event.target.value === '') {
       setStudent('');
@@ -27,13 +27,14 @@ export default function Form(props) {
     props.onCancel();
   }
 
+  //Validates that both student and interviewer aren't null
   function validate() {
-    if (!props.name && (student === '' || interviewer === null)) {
+    if (!props.name && student === '') {
       setError("student name cannot be blank");
       return;
     }
 
-    if (!props.name && interviewer === null) {
+    if (nterviewer === null) {
       setError("Interviewer must be selected");
       return;
 
