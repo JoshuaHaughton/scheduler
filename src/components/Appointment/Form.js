@@ -34,7 +34,7 @@ export default function Form(props) {
       return;
     }
 
-    if (nterviewer === null) {
+    if (interviewer === null) {
       setError("Interviewer must be selected");
       return;
 
